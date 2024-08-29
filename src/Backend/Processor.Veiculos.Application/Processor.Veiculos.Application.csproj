@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj" />
+    <ProjectReference Include="..\Processor.Veiculos.Domain\Processor.Veiculos.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

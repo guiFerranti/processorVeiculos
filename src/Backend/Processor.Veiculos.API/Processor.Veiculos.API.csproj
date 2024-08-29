@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj" />
+    <ProjectReference Include="..\Processor.Veiculos.Application\Processor.Veiculos.Application.csproj" />
+  </ItemGroup>
+
 </Project>
