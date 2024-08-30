@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace Processor.Veiculos.Infrastructure.DataAccess.Repositories;
 
-public class VeiculoRepository : IVeiculoWriteOnlyRepository
+public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository
 {
     private readonly string _filePath;
     public VeiculoRepository(string filePath)
@@ -34,5 +34,33 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository
 
         await File.WriteAllTextAsync(_filePath, newJsonString);
 
+    }
+
+    public async Task<IEnumerable<Veiculo>> GetAll()
+    {
+        if (File.Exists(_filePath))
+        {
+            var jsonString = await File.ReadAllTextAsync(_filePath);
+            var veiculos = JsonSerializer.Deserialize<List<Veiculo>>(jsonString) ?? new List<Veiculo>();
+            return veiculos;
+        }
+
+        return Enumerable.Empty<Veiculo>();
+    }
+
+    public async Task<Veiculo> GetById(long id)
+    {
+        if (File.Exists(_filePath))
+        {
+            var jsonString = await File.ReadAllTextAsync(_filePath);
+            var veiculos = JsonSerializer.Deserialize<List<Veiculo>>(jsonString);
+
+            if (veiculos != null)
+            {
+                return veiculos.FirstOrDefault(v => v.Id == id);
+            }
+        }
+
+        return null;
     }
 }
