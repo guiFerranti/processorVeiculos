@@ -1,6 +1,6 @@
 ﻿namespace Processor.Veiculos.Exceptions.ExceptionsBase;
 
-public class ErrorsOnValidationException : ProcessorVeiculosExepction
+public class ErrorsOnValidationException : ProcessorVeiculosException
 {
     public IList<string> ErrorMessages { get; set; }
 
