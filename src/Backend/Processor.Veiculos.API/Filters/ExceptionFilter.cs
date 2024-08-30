@@ -11,7 +11,7 @@ public class ExceptionFilter : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {
-        if (context.Exception is ProcessorVeiculosExepction)
+        if (context.Exception is ProcessorVeiculosException)
         {
             HandleException(context);
         }
