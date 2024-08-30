@@ -1,4 +1,8 @@
 using Processor.Veiculos.API.Filters;
+using System.Runtime.CompilerServices;
+using Processor.Veiculos.Application;
+using Processor.Veiculos.Infrastructure;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +15,17 @@ builder.Services.AddSwaggerGen();
 
 // exception filter
 
-builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
+
+
+// infrastructure
+
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAplication();
+
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -29,3 +41,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
