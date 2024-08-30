@@ -1,10 +1,11 @@
-﻿using Processor.Veiculos.Domain.Entities;
+﻿using Processor.Veiculos.Communication.Requests;
+using Processor.Veiculos.Domain.Entities;
 using Processor.Veiculos.Domain.Repositories.Veiculos;
 using System.Text.Json;
 
 namespace Processor.Veiculos.Infrastructure.DataAccess.Repositories;
 
-public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository
+public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository, IVeiculoUpdateOnlyRepository
 {
     private readonly string _filePath;
     public VeiculoRepository(string filePath)
@@ -77,5 +78,25 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
         }
 
         return null;
+    }
+
+    public async Task Update(long id, Veiculo veiculoAtualizado)
+    {
+        var veiculos = await GetAll();
+        var veiculoExistente = await GetById(id);
+
+        veiculoExistente.Ano = veiculoAtualizado.Ano;
+        veiculoExistente.Modelo = veiculoAtualizado.Modelo;
+        veiculoExistente.Marca = veiculoAtualizado.Marca;
+        veiculoExistente.UpdatedAt = DateTime.UtcNow;
+
+        var veiculosAtualizados = veiculos
+            .Select(v => v.Id == id ? veiculoExistente : v)
+            .ToList();
+
+
+        var newJsonString = JsonSerializer.Serialize(veiculosAtualizados, new JsonSerializerOptions { WriteIndented = true });
+
+        await File.WriteAllTextAsync(_filePath, newJsonString);
     }
 }
