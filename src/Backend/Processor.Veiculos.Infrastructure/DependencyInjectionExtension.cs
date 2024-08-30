@@ -15,10 +15,9 @@ public static class DependencyInjectionExtension
 
     private static void AddRepositories(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IVeiculoWriteOnlyRepository, VeiculoRepository>(provider =>
-        {
-            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "veiculos.json");
-            return new VeiculoRepository(filePath);
-        });
+        var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "veiculos.json");
+
+        services.AddScoped<IVeiculoWriteOnlyRepository>(provider => new VeiculoRepository(filePath));
+        services.AddScoped<IVeiculoReadOnlyRepository>(provider => new VeiculoRepository(filePath));
     }
 }
