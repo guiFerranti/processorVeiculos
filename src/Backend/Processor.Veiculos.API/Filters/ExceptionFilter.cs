@@ -29,12 +29,11 @@ public class ExceptionFilter : IExceptionFilter
 
             context.HttpContext.Response.StatusCode = (int) HttpStatusCode.BadRequest;
             context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception.ErrorMessages));
-        } else if (context.Exception is NotFoundException)
-        {
-            var exception = context.Exception as ErrorsOnValidationException;
 
+        } else if (context.Exception is NotFoundException notFoundException)
+        { 
             context.HttpContext.Response.StatusCode = (int) HttpStatusCode.NotFound;
-            context.Result = new ObjectResult(new ResponseErrorJson(exception.ErrorMessages));
+            context.Result = new ObjectResult(new ResponseErrorJson(notFoundException.ErrorMessages));
         }
     }
     private void ThrowUnknowException(ExceptionContext context)
