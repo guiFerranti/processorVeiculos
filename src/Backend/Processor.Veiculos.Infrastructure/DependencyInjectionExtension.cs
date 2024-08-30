@@ -20,5 +20,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IVeiculoWriteOnlyRepository>(provider => new VeiculoRepository(filePath));
         services.AddScoped<IVeiculoReadOnlyRepository>(provider => new VeiculoRepository(filePath));
         services.AddScoped<IVeiculoUpdateOnlyRepository>(provider => new VeiculoRepository(filePath));
+        services.AddScoped<IVeiculoDeleteOnlyRepository>(provider => new VeiculoRepository(filePath));
     }
 }
