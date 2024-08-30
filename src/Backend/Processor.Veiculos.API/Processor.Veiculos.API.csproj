@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj" />
     <ProjectReference Include="..\Processor.Veiculos.Application\Processor.Veiculos.Application.csproj" />
+    <ProjectReference Include="..\Processor.Veiculos.Infrastructure\Processor.Veiculos.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

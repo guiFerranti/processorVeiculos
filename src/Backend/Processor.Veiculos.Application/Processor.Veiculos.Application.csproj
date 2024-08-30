@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj" />
     <ProjectReference Include="..\Processor.Veiculos.Domain\Processor.Veiculos.Domain.csproj" />

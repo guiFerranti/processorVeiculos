@@ -11,15 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{ADF8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B469058C-2ACF-424C-92AA-484CCBB0D9BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.API", "src\Backend\Processor.Veiculos.API\Processor.Veiculos.API.csproj", "{B78868A8-EF18-4494-8651-E58882787B64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.API", "src\Backend\Processor.Veiculos.API\Processor.Veiculos.API.csproj", "{B78868A8-EF18-4494-8651-E58882787B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Application", "src\Backend\Processor.Veiculos.Application\Processor.Veiculos.Application.csproj", "{6BB54B62-870C-4515-A0CF-DE99EECB28CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Application", "src\Backend\Processor.Veiculos.Application\Processor.Veiculos.Application.csproj", "{6BB54B62-870C-4515-A0CF-DE99EECB28CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Domain", "src\Backend\Processor.Veiculos.Domain\Processor.Veiculos.Domain.csproj", "{006A1946-7230-44E2-8C54-A6570EE53B37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Domain", "src\Backend\Processor.Veiculos.Domain\Processor.Veiculos.Domain.csproj", "{006A1946-7230-44E2-8C54-A6570EE53B37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Communication", "src\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj", "{B3E710E7-D025-4189-9175-515785188D0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Communication", "src\Shared\Processor.Veiculos.Communication\Processor.Veiculos.Communication.csproj", "{B3E710E7-D025-4189-9175-515785188D0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Exceptions", "src\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj", "{EB4B70F6-53CD-46E9-A524-C533769BDD93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Exceptions", "src\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj", "{EB4B70F6-53CD-46E9-A524-C533769BDD93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Infrastructure", "src\Backend\Processor.Veiculos.Infrastructure\Processor.Veiculos.Infrastructure.csproj", "{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{EB4B70F6-53CD-46E9-A524-C533769BDD93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB4B70F6-53CD-46E9-A524-C533769BDD93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB4B70F6-53CD-46E9-A524-C533769BDD93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{006A1946-7230-44E2-8C54-A6570EE53B37} = {ADF8D6B9-CB62-4DB9-B673-1FAC61D78E1E}
 		{B3E710E7-D025-4189-9175-515785188D0C} = {B469058C-2ACF-424C-92AA-484CCBB0D9BD}
 		{EB4B70F6-53CD-46E9-A524-C533769BDD93} = {B469058C-2ACF-424C-92AA-484CCBB0D9BD}
+		{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6} = {ADF8D6B9-CB62-4DB9-B673-1FAC61D78E1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB6F6E5C-990E-4B80-AB8E-4EBFA12D256B}
