@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
+using Processor.Veiculos.Application.UseCases.Veiculos.Update;
 using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Communication.Responses;
 
@@ -33,5 +34,18 @@ public class VeiculosController : ControllerBase
         var result = await useCase.Execute(id);
 
         return Ok(result);
+    }
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(
+               [FromRoute] long id,
+                      [FromBody] RequestUpdateVeiculoJson request,
+                        [FromServices] IUpdateVeiculo useCase)
+    {
+        await useCase.Execute(id, request);
+
+        return NoContent();
     }
 }
