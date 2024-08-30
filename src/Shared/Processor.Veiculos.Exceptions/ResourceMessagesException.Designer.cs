@@ -104,5 +104,14 @@ namespace Processor.Veiculos.Exceptions {
                 return ResourceManager.GetString("UKNOWN_ERROR", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Veículo não encontrado..
+        /// </summary>
+        public static string VEICULO_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("VEICULO_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

@@ -132,4 +132,7 @@
   <data name="UKNOWN_ERROR" xml:space="preserve">
     <value>Erro desconhecido.</value>
   </data>
+  <data name="VEICULO_NOT_FOUND" xml:space="preserve">
+    <value>Veículo não encontrado.</value>
+  </data>
 </root>
