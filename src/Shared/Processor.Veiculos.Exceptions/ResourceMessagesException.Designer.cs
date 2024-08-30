@@ -95,5 +95,14 @@ namespace Processor.Veiculos.Exceptions {
                 return ResourceManager.GetString("MODELO_EMPTY", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erro desconhecido..
+        /// </summary>
+        public static string UKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UKNOWN_ERROR", resourceCulture);
+            }
+        }
     }
 }
