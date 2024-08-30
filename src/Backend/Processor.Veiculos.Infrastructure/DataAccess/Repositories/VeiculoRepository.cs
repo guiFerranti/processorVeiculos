@@ -67,7 +67,7 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
         return exists;
     }
 
-    public async Task<List<Veiculo>> GetAll()
+    public async Task<IList<Veiculo>> GetAll()
     {
         if (File.Exists(_filePath))
         {
@@ -117,4 +117,5 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
 
         await File.WriteAllTextAsync(_filePath, newJsonString);
     }
+
 }
