@@ -17,6 +17,8 @@ public class AutoMapping : Profile
     {
         CreateMap<RequestRegisteredVeiculoJson, Domain.Entities.Veiculo>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+        CreateMap<RequestUpdateVeiculoJson, Domain.Entities.Veiculo>();
     }
 
     private void DomainToResponse() 
