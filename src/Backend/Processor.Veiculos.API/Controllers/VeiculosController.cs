@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Processor.Veiculos.Application.UseCases.Veiculos.Register;
 using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Communication.Responses;
 
@@ -12,9 +13,13 @@ public class VeiculosController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredVeiculoJson), StatusCodes.Status201Created)]
-    public IActionResult Register(RequestRegisteredVeiculoJson request)
+    public async Task<IActionResult> Register(
+        [FromBody] RequestRegisteredVeiculoJson request,
+        [FromServices] IRegisterVeiculoUseCase useCase)
     {
-        return Created();
+        var result = await useCase.Execute(request);
+
+        return Created(string.Empty, result);
     }
 
 }
