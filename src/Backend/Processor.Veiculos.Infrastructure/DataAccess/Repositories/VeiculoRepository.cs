@@ -1,11 +1,14 @@
 ﻿using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Domain.Entities;
 using Processor.Veiculos.Domain.Repositories.Veiculos;
+using Processor.Veiculos.Exceptions;
+using Processor.Veiculos.Exceptions.ExceptionsBase;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Processor.Veiculos.Infrastructure.DataAccess.Repositories;
 
-public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository, IVeiculoUpdateOnlyRepository
+public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository, IVeiculoUpdateOnlyRepository, IVeiculoDeleteOnlyRepository
 {
     private readonly string _filePath;
     public VeiculoRepository(string filePath)
@@ -37,6 +40,18 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
 
     }
 
+    public async Task Delete(long id)
+    {
+        var veiculos = await GetAll();
+
+        var veiculoToRemove = await GetById(id);
+
+        veiculos.Remove(veiculoToRemove);
+
+        var jsonString = JsonSerializer.Serialize(veiculos, new JsonSerializerOptions { WriteIndented = true });
+        await File.WriteAllTextAsync(_filePath, jsonString);
+    }
+
     public async Task<bool> Exists(long id)
     {
         if (!File.Exists(_filePath))
@@ -52,7 +67,7 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
         return exists;
     }
 
-    public async Task<IEnumerable<Veiculo>> GetAll()
+    public async Task<List<Veiculo>> GetAll()
     {
         if (File.Exists(_filePath))
         {
@@ -61,23 +76,26 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
             return veiculos;
         }
 
-        return Enumerable.Empty<Veiculo>();
+        return new List<Veiculo>();
     }
 
     public async Task<Veiculo> GetById(long id)
     {
         if (File.Exists(_filePath))
         {
-            var jsonString = await File.ReadAllTextAsync(_filePath);
-            var veiculos = JsonSerializer.Deserialize<List<Veiculo>>(jsonString);
-
-            if (veiculos != null)
-            {
-                return veiculos.FirstOrDefault(v => v.Id == id);
-            }
+            throw new NotFoundException(ResourceMessagesException.VEICULO_NOT_FOUND);
         }
 
-        return null;
+        var jsonString = await File.ReadAllTextAsync(_filePath);
+        var veiculos = JsonSerializer.Deserialize<List<Veiculo>>(jsonString);
+        var veiculo = veiculos.FirstOrDefault(v => v.Id == id);
+
+        if (veiculo is not null)
+        {
+            throw new NotFoundException(ResourceMessagesException.VEICULO_NOT_FOUND);
+        }
+
+        return veiculo;
     }
 
     public async Task Update(long id, Veiculo veiculoAtualizado)
