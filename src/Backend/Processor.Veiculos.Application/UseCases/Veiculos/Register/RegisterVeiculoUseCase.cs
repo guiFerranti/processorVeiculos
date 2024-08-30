@@ -11,11 +11,13 @@ public class RegisterVeiculoUseCase : IRegisterVeiculoUseCase
 {
     private readonly IMapper _mapper;
     private readonly IVeiculoWriteOnlyRepository _veiculoWriteOnlyRepository;
+    private readonly IVeiculoReadOnlyRepository _veiculoReadOnlyRepository;
 
-    public RegisterVeiculoUseCase(IMapper mapper, IVeiculoWriteOnlyRepository veiculoWriteOnlyRepository)
+    public RegisterVeiculoUseCase(IMapper mapper, IVeiculoWriteOnlyRepository veiculoWriteOnlyRepository, IVeiculoReadOnlyRepository veiculoReadOnlyRepository)
     {
         _mapper = mapper;
         _veiculoWriteOnlyRepository = veiculoWriteOnlyRepository;
+        _veiculoReadOnlyRepository = veiculoReadOnlyRepository;
     }
 
     public async Task<ResponseRegisteredVeiculoJson> Execute(RequestRegisteredVeiculoJson request)
@@ -23,6 +25,7 @@ public class RegisterVeiculoUseCase : IRegisterVeiculoUseCase
         Validate(request);
 
         var veiculo = _mapper.Map<Domain.Entities.Veiculo>(request);
+        veiculo.Id = await GenerateUniqueIdVeiculo();
 
         await _veiculoWriteOnlyRepository.Add(veiculo);
 
@@ -42,5 +45,22 @@ public class RegisterVeiculoUseCase : IRegisterVeiculoUseCase
 
             throw new ErrorsOnValidationException(errorMessages);
         }
+    }
+
+    private async Task<long> GenerateUniqueIdVeiculo()
+    {
+        long newId;
+        bool isUnique;
+
+        do
+        {
+            byte[] buffer = Guid.NewGuid().ToByteArray();
+            newId = BitConverter.ToInt64(buffer, 0);
+
+            isUnique = !await _veiculoReadOnlyRepository.Exists(newId);
+        }
+        while (!isUnique);
+
+        return newId;
     }
 }
