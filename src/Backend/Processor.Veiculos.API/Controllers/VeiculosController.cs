@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
 using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Communication.Responses;
@@ -22,4 +23,15 @@ public class VeiculosController : ControllerBase
         return Created(string.Empty, result);
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(ResponseGetVeiculoJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+        [FromRoute] long id,
+        [FromServices] IGetVeiculoById useCase)
+    {
+        var result = await useCase.Execute(id);
+
+        return Ok(result);
+    }
 }
