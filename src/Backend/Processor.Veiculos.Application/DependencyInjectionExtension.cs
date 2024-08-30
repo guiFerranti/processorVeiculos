@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Processor.Veiculos.Application.Services.AutoMapper;
 using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
+using Processor.Veiculos.Application.UseCases.Veiculos.Update;
 using Processor.Veiculos.Domain.Repositories.Veiculos;
 
 namespace Processor.Veiculos.Application;
@@ -29,5 +30,6 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IRegisterVeiculoUseCase, RegisterVeiculoUseCase>();
         services.AddScoped<IGetVeiculoById, GetVeiculoById>();
+        services.AddScoped<IUpdateVeiculo, UpdateVeiculo>();
     }
 }
