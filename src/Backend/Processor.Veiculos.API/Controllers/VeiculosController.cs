@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Processor.Veiculos.Application.UseCases.Veiculos.Delete;
 using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
 using Processor.Veiculos.Application.UseCases.Veiculos.Update;
@@ -45,6 +46,18 @@ public class VeiculosController : ControllerBase
                         [FromServices] IUpdateVeiculo useCase)
     {
         await useCase.Execute(id, request);
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+               [FromRoute] long id,
+                      [FromServices] IDeleteVeiculo useCase)
+    {
+        await useCase.Execute(id);
 
         return NoContent();
     }
