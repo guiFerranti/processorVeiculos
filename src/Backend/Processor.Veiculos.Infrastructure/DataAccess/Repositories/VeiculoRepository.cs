@@ -46,7 +46,9 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
 
         var veiculoToRemove = await GetById(id);
 
-        veiculos.Remove(veiculoToRemove);
+        var veiculoExistente = veiculos.FirstOrDefault(v => v.Id == veiculoToRemove.Id);
+
+        veiculos.Remove(veiculoExistente);
 
         var jsonString = JsonSerializer.Serialize(veiculos, new JsonSerializerOptions { WriteIndented = true });
         await File.WriteAllTextAsync(_filePath, jsonString);
@@ -81,7 +83,7 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
 
     public async Task<Veiculo> GetById(long id)
     {
-        if (File.Exists(_filePath))
+        if (!File.Exists(_filePath))
         {
             throw new NotFoundException(ResourceMessagesException.VEICULO_NOT_FOUND);
         }
@@ -90,7 +92,7 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
         var veiculos = JsonSerializer.Deserialize<List<Veiculo>>(jsonString);
         var veiculo = veiculos.FirstOrDefault(v => v.Id == id);
 
-        if (veiculo is not null)
+        if (veiculo is null)
         {
             throw new NotFoundException(ResourceMessagesException.VEICULO_NOT_FOUND);
         }
