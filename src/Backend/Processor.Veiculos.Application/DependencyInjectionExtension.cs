@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Processor.Veiculos.Application.Services.AutoMapper;
 using Processor.Veiculos.Application.UseCases.Veiculos.Delete;
+using Processor.Veiculos.Application.UseCases.Veiculos.GetAll;
 using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
 using Processor.Veiculos.Application.UseCases.Veiculos.Update;
@@ -30,8 +31,9 @@ public static class DependencyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IRegisterVeiculoUseCase, RegisterVeiculoUseCase>();
-        services.AddScoped<IGetVeiculoById, GetVeiculoById>();
-        services.AddScoped<IUpdateVeiculo, UpdateVeiculo>();
+        services.AddScoped<IGetVeiculoByIdUseCase, GetVeiculoByIdUseCase>();
+        services.AddScoped<IUpdateVeiculoUseCase, UpdateVeiculoUseCase>();
         services.AddScoped<IDeleteVeiculo, DeleteVeiculo>();   
+        services.AddScoped<IGetAllVeiculoUseCase, GetAllVeiculoUseCase>();   
     }
 }
