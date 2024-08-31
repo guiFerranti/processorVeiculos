@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{15497B97-7C7C-4B97-818A-41A166EC3E7A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder2", "NewFolder2", "{B7C19FBF-4935-45B2-A97E-6CB39E35AAC8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{ADF8D6B9-CB62-4DB9-B673-1FAC61D78E1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B469058C-2ACF-424C-92AA-484CCBB0D9BD}"
@@ -21,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Communic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Exceptions", "src\Shared\Processor.Veiculos.Exceptions\Processor.Veiculos.Exceptions.csproj", "{EB4B70F6-53CD-46E9-A524-C533769BDD93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor.Veiculos.Infrastructure", "src\Backend\Processor.Veiculos.Infrastructure\Processor.Veiculos.Infrastructure.csproj", "{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processor.Veiculos.Infrastructure", "src\Backend\Processor.Veiculos.Infrastructure\Processor.Veiculos.Infrastructure.csproj", "{FF184EA9-EBC2-4B2F-859B-2C9F2C1F03B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
