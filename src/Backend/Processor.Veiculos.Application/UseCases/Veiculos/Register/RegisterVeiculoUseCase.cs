@@ -4,6 +4,7 @@ using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Communication.Responses;
 using Processor.Veiculos.Domain.Repositories.Veiculos;
 using Processor.Veiculos.Exceptions.ExceptionsBase;
+using System;
 
 namespace Processor.Veiculos.Application.UseCases.Veiculos.Register;
 
@@ -51,12 +52,14 @@ public class RegisterVeiculoUseCase : IRegisterVeiculoUseCase
     {
         long newId;
         bool isUnique;
+        Random random = new Random();
 
         do
         {
             byte[] buffer = Guid.NewGuid().ToByteArray();
-            newId = BitConverter.ToInt64(buffer, 0);
+            long id = BitConverter.ToInt64(buffer, 0);
 
+            newId = (long)(random.NextDouble() * 1_000_000_000);
             isUnique = !await _veiculoReadOnlyRepository.Exists(newId);
         }
         while (!isUnique);
