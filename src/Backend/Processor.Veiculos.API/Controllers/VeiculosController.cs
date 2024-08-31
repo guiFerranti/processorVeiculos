@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Processor.Veiculos.Application.UseCases.Veiculos.Delete;
+using Processor.Veiculos.Application.UseCases.Veiculos.GetAll;
 using Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 using Processor.Veiculos.Application.UseCases.Veiculos.Register;
 using Processor.Veiculos.Application.UseCases.Veiculos.Update;
@@ -30,7 +31,7 @@ public class VeiculosController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromRoute] long id,
-        [FromServices] IGetVeiculoById useCase)
+        [FromServices] IGetVeiculoByIdUseCase useCase)
     {
         var result = await useCase.Execute(id);
 
@@ -43,7 +44,7 @@ public class VeiculosController : ControllerBase
     public async Task<IActionResult> Update(
                [FromRoute] long id,
                       [FromBody] RequestUpdateVeiculoJson request,
-                        [FromServices] IUpdateVeiculo useCase)
+                        [FromServices] IUpdateVeiculoUseCase useCase)
     {
         await useCase.Execute(id, request);
 
@@ -60,5 +61,18 @@ public class VeiculosController : ControllerBase
         await useCase.Execute(id);
 
         return NoContent();
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseGetAllVeiculosJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll(
+               [FromServices] IGetAllVeiculoUseCase useCase,
+               [FromQuery] int page = 1,
+               [FromQuery] int pageSize = 10
+               )
+    {
+        var result = await useCase.Execute(page, pageSize);
+
+        return Ok(result);
     }
 }
