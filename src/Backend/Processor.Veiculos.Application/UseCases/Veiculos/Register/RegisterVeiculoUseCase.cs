@@ -2,6 +2,7 @@
 using Processor.Veiculos.Application.Services.AutoMapper;
 using Processor.Veiculos.Communication.Requests;
 using Processor.Veiculos.Communication.Responses;
+using Processor.Veiculos.Domain.Entities;
 using Processor.Veiculos.Domain.Repositories.Veiculos;
 using Processor.Veiculos.Exceptions.ExceptionsBase;
 using System;
@@ -30,7 +31,9 @@ public class RegisterVeiculoUseCase : IRegisterVeiculoUseCase
 
         await _veiculoWriteOnlyRepository.Add(veiculo);
 
-        return null;
+        var response = _mapper.Map<ResponseRegisteredVeiculoJson>(veiculo);
+
+        return response;
     }
 
 
