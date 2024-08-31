@@ -14,6 +14,13 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
     public VeiculoRepository(string filePath)
     {
         _filePath = filePath;
+
+        var directory = Path.GetDirectoryName(_filePath);
+
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
     }
 
 
