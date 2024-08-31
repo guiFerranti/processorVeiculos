@@ -116,6 +116,7 @@ public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRe
         veiculoExistente.Modelo = veiculoAtualizado.Modelo;
         veiculoExistente.Marca = veiculoAtualizado.Marca;
         veiculoExistente.UpdatedAt = DateTime.UtcNow;
+        veiculoExistente.ImageUrl = veiculoAtualizado.ImageUrl;
 
         var veiculosAtualizados = veiculos
             .Select(v => v.Id == id ? veiculoExistente : v)
