@@ -12,4 +12,7 @@ public class Veiculo : EntityBase
 
     [JsonPropertyOrder(6)]
     public string Marca { get; set; } = string.Empty;
+
+    [JsonPropertyOrder(7)]
+    public string ImageUrl { get; set; } = string.Empty;
 }

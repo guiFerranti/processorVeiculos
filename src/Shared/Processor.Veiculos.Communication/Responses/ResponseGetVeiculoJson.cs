@@ -8,4 +8,5 @@ public class ResponseGetVeiculoJson
     public int Ano { get; set; }
     public string Modelo { get; set; }
     public string Marca { get; set; }
+    public string ImageUrl { get; set; }
 }
