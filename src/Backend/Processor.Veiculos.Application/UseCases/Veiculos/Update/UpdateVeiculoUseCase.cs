@@ -6,12 +6,12 @@ using Processor.Veiculos.Exceptions.ExceptionsBase;
 
 namespace Processor.Veiculos.Application.UseCases.Veiculos.Update;
 
-public class UpdateVeiculo : IUpdateVeiculo
+public class UpdateVeiculoUseCase : IUpdateVeiculoUseCase
 {
     private readonly IVeiculoUpdateOnlyRepository _veiculoRepository;
     private readonly IMapper _mapper;
 
-    public UpdateVeiculo(IVeiculoUpdateOnlyRepository veiculoRepository, IMapper mapper)
+    public UpdateVeiculoUseCase(IVeiculoUpdateOnlyRepository veiculoRepository, IMapper mapper)
     {
         _veiculoRepository = veiculoRepository;
         _mapper = mapper;

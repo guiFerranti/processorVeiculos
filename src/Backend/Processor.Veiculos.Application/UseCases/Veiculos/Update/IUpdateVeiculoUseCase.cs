@@ -2,7 +2,7 @@
 
 namespace Processor.Veiculos.Application.UseCases.Veiculos.Update;
 
-public interface IUpdateVeiculo
+public interface IUpdateVeiculoUseCase
 {
     Task Execute(long id, RequestUpdateVeiculoJson veiculo);
 }

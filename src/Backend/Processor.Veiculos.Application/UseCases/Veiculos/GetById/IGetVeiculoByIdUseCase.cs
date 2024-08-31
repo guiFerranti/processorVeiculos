@@ -2,7 +2,7 @@
 
 namespace Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 
-public interface IGetVeiculoById
+public interface IGetVeiculoByIdUseCase
 {
     public Task<ResponseGetVeiculoJson> Execute(long id);
 }

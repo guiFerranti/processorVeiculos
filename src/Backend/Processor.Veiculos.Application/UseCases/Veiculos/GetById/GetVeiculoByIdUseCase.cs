@@ -6,12 +6,12 @@ using Processor.Veiculos.Exceptions.ExceptionsBase;
 
 namespace Processor.Veiculos.Application.UseCases.Veiculos.GetById;
 
-public class GetVeiculoById : IGetVeiculoById
+public class GetVeiculoByIdUseCase : IGetVeiculoByIdUseCase
 {
     private readonly IVeiculoReadOnlyRepository _veiculoReadOnlyRepository;
     private readonly IMapper _mapper;
 
-    public GetVeiculoById(IVeiculoReadOnlyRepository veiculoReadOnlyRepository, IMapper mapper)
+    public GetVeiculoByIdUseCase(IVeiculoReadOnlyRepository veiculoReadOnlyRepository, IMapper mapper)
     {
         _veiculoReadOnlyRepository = veiculoReadOnlyRepository;
         _mapper = mapper;

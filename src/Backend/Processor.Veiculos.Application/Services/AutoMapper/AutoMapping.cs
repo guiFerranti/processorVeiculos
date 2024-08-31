@@ -24,5 +24,6 @@ public class AutoMapping : Profile
     private void DomainToResponse() 
     {
         CreateMap<Domain.Entities.Veiculo, ResponseGetVeiculoJson>();
+        CreateMap<Domain.Entities.Veiculo, ResponseRegisteredVeiculoJson>();
     }
 }
